@@ -1,40 +1,14 @@
-import os.path
-import os
-from pathlib import Path
-# from pathlib import Path
+p = input('Enter filename with .txt extention: ')
 
-# filepath = input(f'Would you like to change the path {os.getcwd()}? Y/N:\t')
-# if filepath == 'Y':
-#     new_filepath = input('Enter the new path:\n')
-#     pnew = Path(new_filepath)
-#     print(os.getcwd())
-#     print(pnew)
-#     txtpath = input('path for files: ')
-#     p = (txtpath)
-# elif filepath == 'N':
-#     print('Keeping the current path...')
-# else:
-#     print('Select either Y or N')
-#     exit()
+if not p.endswith('.txt'):
+    print('The file must have a .txt extension!')
+    exit()
 
-txtpath = input('Enter filename with .txt extention: ')
-p = (txtpath)
-# print (os.path.splitext(p)[1])
 
-if os.path.exists(p) == False:
-    # p + 'txt'
-    print('File does not exist, or you forgot to add the .txt extention...')
-elif p.endswith( '.txt' ):
-    txt = open(p, 'r+')
-    txtinc = txt.read()
-    repltxt = txtinc.replace('z"','"')
-    txt.close()
-    txt = open(p, 'wt')
-    txt.write(repltxt)
+with open(p, 'r+') as txt:
+    txt_replace = txt.read().replace('z"','"')
+    txt.seek(0)
+    txt.truncate()
+    txt.write(txt_replace)
     txt.close()
     print ('File is successfully edited')
-# else:
-#     print('Sorry, seems like you forgot to add the .txt extention...')
-#     return (txtpath)
-
-#r+	Для чтения и записи.
