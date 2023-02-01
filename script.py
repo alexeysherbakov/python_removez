@@ -4,7 +4,6 @@ if not p.endswith('.txt'):
     print('The file must have a .txt extension!')
     exit()
 
-
 with open(p, 'r+') as txt:
     txt_replace = txt.read().replace('z"','"')
     txt.seek(0)
