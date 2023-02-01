@@ -1,36 +1,24 @@
-with open('test.txt', 'r+') as txt:
-    check_tags = False
-    for line in txt:
-        if '<glyphs' in line:
-            check_tags = True
-        if check_tags:
-            line = line.replace('z','')
-        if '/>' in line:
-            check_tags = False
-    txt.seek(0)
-    txt.truncate()
-    txt.write(line)
+p = input('Enter filename with .txt extention: ')
 
-txt.close()
+if not p.endswith('.txt'):
+    print('The file must have a .txt extension!')
+    exit()
+
+with open(p, 'r') as txt:
+    lines = txt.readlines()
+
+check_tags = False
+new_lines = []
+for line in lines:
+    if 'd=' in line:
+        check_tags = True
+    if check_tags:
+        line = line.replace('z','')
+    if '/>' in line:
+        check_tags = False
+    new_lines.append(line)
+
+with open(p, 'w') as txt:
+    txt.writelines(new_lines)
+
 print ('File is successfully edited')
-
-        
-
-
-# with open('test.txt', 'rt') as f:
-#         for line in f:
-#             # print(line.rstrip())
-#             if line.startswith('<glyph') and line.endswith('/>'):
-#                 line.replace('z','')
-#                 f.close()
-#                 txt = open(f, 'wt')
-#                 txt.write(line)
-#                 txt.close()
-#                 f.write()
-
-            # txt_replace = txt.read().replace('z','')
-            # txt.seek(0)
-            # txt.truncate()
-            # txt.write(txt_replace)
-            # txt.close()
-            # print ('File is successfully edited')
