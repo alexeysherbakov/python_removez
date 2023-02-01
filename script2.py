@@ -21,4 +21,4 @@ for line in lines:
 with open(p, 'w') as txt:
     txt.writelines(new_lines)
 
-print ('File is successfully edited')
+print ('File has been successfully edited')

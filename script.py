@@ -10,4 +10,4 @@ with open(p, 'r+') as txt:
     txt.truncate()
     txt.write(txt_replace)
     txt.close()
-    print ('File is successfully edited')
+    print ('File has been successfully edited')
